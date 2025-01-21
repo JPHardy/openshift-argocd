@@ -1,0 +1,72 @@
+{
+    "sections": [
+        {
+            "title": "Access and Accounts",
+            "items": [
+                {
+                    "task": "Company Email Setup",
+                    "description": "Create and configure company email account with appropriate groups and permissions"
+                },
+                {
+                    "task": "VPN Access",
+                    "description": "Set up VPN credentials and provide configuration documentation"
+                },
+                {
+                    "task": "System Credentials",
+                    "description": "Create accounts for essential systems (Active Directory, development environments, etc.)"
+                }
+            ]
+        },
+        {
+            "title": "Hardware and Software",
+            "items": [
+                {
+                    "task": "Workstation Setup",
+                    "description": "Prepare and configure workstation with standard IT image"
+                },
+                {
+                    "task": "Required Software Installation",
+                    "description": "Install and configure all necessary software and development tools"
+                },
+                {
+                    "task": "Mobile Device Setup",
+                    "description": "Configure company mobile device and/or MDM enrollment if applicable"
+                }
+            ]
+        },
+        {
+            "title": "Training and Documentation",
+            "items": [
+                {
+                    "task": "Security Training",
+                    "description": "Complete required security awareness and compliance training"
+                },
+                {
+                    "task": "Internal Systems Training",
+                    "description": "Review documentation and complete training for internal systems and tools"
+                },
+                {
+                    "task": "Department Procedures",
+                    "description": "Review IT department procedures, on-call schedules, and escalation protocols"
+                }
+            ]
+        },
+        {
+            "title": "Team Integration",
+            "items": [
+                {
+                    "task": "Team Introduction",
+                    "description": "Schedule team meet-and-greet and introduction to key stakeholders"
+                },
+                {
+                    "task": "Project Overview",
+                    "description": "Review current projects and responsibilities with team lead"
+                },
+                {
+                    "task": "Mentor Assignment",
+                    "description": "Assign mentor/buddy for first month of employment"
+                }
+            ]
+        }
+    ]
+}
