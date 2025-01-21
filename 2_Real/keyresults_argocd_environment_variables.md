@@ -1,0 +1,1 @@
+Goal : use the environment values update to be reflected by argocd
