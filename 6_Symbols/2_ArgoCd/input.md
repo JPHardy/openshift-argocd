@@ -1,15 +1,22 @@
 # ArgoCD install
 - minikube delete
 - minikube start --cpus=2 --memory=7900MB
-- kubectl get nodes
+--------------- one time ---------------------------------
 - helm repo add argo https://argoproj.github.io/argo-helm
 - helm repo update
+--------------------------------------------------------------
+
 - kubectl create namespace argocd
 - cd /workspaces/openshift-argocd/6_Symbols/2_ArgoCd
 - helm install argocd argo/argo-cd --namespace argocd -f values.yaml
--------------------- optional ------------------------------
-- helm upgrade argocd argo/argo-cd --namespace argocd -f values.yaml
+
+--------------------- test ------------------------------------
+- kubectl get pods -n argocd
 - kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+---------------------------------------------------------------
+-------------------- optional ------------------------------
+- kubectl get nodes
+- helm upgrade argocd argo/argo-cd --namespace argocd -f values.yaml
 - kubectl get pods -n argocd
 ------------------------------------------------------------
 ```
@@ -31,3 +38,4 @@ prompt:
 - only leave the commands
 - Use the markdown structure 
 - Use emojis
+- use ascii
