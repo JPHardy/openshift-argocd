@@ -1,165 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Team Onboarding Checklist</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .section {
-            margin: 20px 0;
-        }
-        
-        .section-title {
-            color: #2980b9;
-            margin-bottom: 10px;
-        }
-        
-        .checklist {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .checklist li {
-            margin: 10px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        
-        input[type="checkbox"] {
-            margin-top: 4px;
-        }
-        
-        .task-description {
-            flex: 1;
-        }
-        
-        .completed {
-            background: #e8f5e9;
-            text-decoration: line-through;
-        }
-        
-        progress {
-            width: 100%;
-            height: 20px;
-            margin: 20px 0;
-        }
-        
-        #progress-label {
-            text-align: center;
-            color: #666;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>IT Team Member Onboarding Checklist</h1>
-        
-        <div id="progress-label">0% Complete</div>
-        <progress id="progress-bar" value="0" max="100"></progress>
-        
-        <div id="checklist-container"></div>
-    </div>
 
-    <script>
-        const corsProxy = 'https://curly-memory-7w5g6j4v5q3x4rq-5500.app.github.dev/6_Symbols/3_ChecklistPlain/';
-        const targetUrl = 'data.json';
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IT Team Onboarding Checklist</title>
+        <style>
+            /* Your existing CSS */
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>IT Team Member Onboarding Checklist</h1>
+            <div id="progress-label">0% Complete</div>
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <div id="checklist-container"></div>
+        </div>
+        <script src="env.js"></script>
+        <script>
+            fetch(CORS_PROXY + TARGET_URL)
+                .then(response => response.json())
+                .then(data => {
+                    generateChecklist(data);
+                })
+                .catch(error => console.error('Error loading data:', error));
 
-        fetch(corsProxy + targetUrl)
-            .then(response => response.json())
-            .then(data => {
-                generateChecklist(data);
-            })
-            .catch(error => console.error('Error loading data:', error));
+            function updateProgress() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                const total = checkboxes.length;
+                const checked = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                const percentage = (checked / total) * 100;
 
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const total = checkboxes.length;
-            const checked = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-            const percentage = (checked / total) * 100;
-            
-            document.getElementById('progress-bar').value = percentage;
-            document.getElementById('progress-label').textContent = `${Math.round(percentage)}% Complete`;
-            
-            checkboxes.forEach(checkbox => {
-                const listItem = checkbox.closest('li');
-                if (checkbox.checked) {
-                    listItem.classList.add('completed');
-                } else {
-                    listItem.classList.remove('completed');
-                }
-            });
-        }
+                document.getElementById('progress-bar').value = percentage;
+                document.getElementById('progress-label').textContent = `${Math.round(percentage)}% Complete`;
 
-        function generateChecklist(data) {
-            const container = document.getElementById('checklist-container');
-            data.sections.forEach(section => {
-                const sectionDiv = document.createElement('div');
-                sectionDiv.classList.add('section');
-                
-                const sectionTitle = document.createElement('h2');
-                sectionTitle.classList.add('section-title');
-                sectionTitle.textContent = section.title;
-                sectionDiv.appendChild(sectionTitle);
-                
-                const checklist = document.createElement('ul');
-                checklist.classList.add('checklist');
-                
-                section.items.forEach(item => {
-                    const listItem = document.createElement('li');
-                    
-                    const checkboxContainer = document.createElement('div');
-                    checkboxContainer.classList.add('checkbox-container');
-                    
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.onchange = updateProgress;
-                    checkboxContainer.appendChild(checkbox);
-                    
-                    const taskDescription = document.createElement('div');
-                    taskDescription.classList.add('task-description');
-                    taskDescription.innerHTML = `<strong>${item.task}</strong><br>${item.description}`;
-                    checkboxContainer.appendChild(taskDescription);
-                    
-                    listItem.appendChild(checkboxContainer);
-                    checklist.appendChild(listItem);
+                checkboxes.forEach(checkbox => {
+                    const listItem = checkbox.closest('li');
+                    if (checkbox.checked) {
+                        listItem.classList.add('completed');
+                    } else {
+                        listItem.classList.remove('completed');
+                    }
                 });
-                
-                sectionDiv.appendChild(checklist);
-                container.appendChild(sectionDiv);
-            });
-        }
+            }
 
-        document.addEventListener('DOMContentLoaded', generateChecklist);
-    </script>
-</body>
-</html>
+            function generateChecklist(data) {
+                const container = document.getElementById('checklist-container');
+                data.sections.forEach(section => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.classList.add('section');
+
+                    const sectionTitle = document.createElement('h2');
+                    sectionTitle.classList.add('section-title');
+                    sectionTitle.textContent = section.title;
+                    sectionDiv.appendChild(sectionTitle);
+
+                    const checklist = document.createElement('ul');
+                    checklist.classList.add('checklist');
+
+                    section.items.forEach(item => {
+                        const listItem = document.createElement('li');
+
+                        const checkboxContainer = document.createElement('div');
+                        checkboxContainer.classList.add('checkbox-container');
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.onchange = updateProgress;
+                        checkboxContainer.appendChild(checkbox);
+
+                        const taskDescription = document.createElement('div');
+                        taskDescription.classList.add('task-description');
+                        taskDescription.innerHTML = `<strong>${item.task}</strong><br>${item.description}`;
+                        checkboxContainer.appendChild(taskDescription);
+
+                        listItem.appendChild(checkboxContainer);
+                        checklist.appendChild(listItem);
+                    });
+
+                    sectionDiv.appendChild(checklist);
+                    container.appendChild(sectionDiv);
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', generateChecklist);
+        </script>
+    </body>
+    </html>
+    ```
