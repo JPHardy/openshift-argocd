@@ -1,3 +1,13 @@
 server:
   service:
     type: LoadBalancer
+configs:
+  secret:
+    # This field is deprecated, use argocdServerAdminPassword instead
+    # argocdInitialAdminSecret: ""
+
+    # argocdServerAdminPassword sets the admin user's password for the Argo CD API server.
+    # If not specified, a random password will be generated and stored in the argocd-initial-admin-secret secret.
+    # You can retrieve the password using:
+    # kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+    argocdServerAdminPassword: your-password
