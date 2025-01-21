@@ -91,7 +91,7 @@
     </div>
 
     <script>
-        fetch('/workspaces/openshift-argocd/6_Symbols/3_Checklist/data.json')
+        fetch('data.json')
             .then(response => response.json())
             .then(data => {
                 generateChecklist(data);
