@@ -91,7 +91,10 @@
     </div>
 
     <script>
-        fetch('data.json')
+        const corsProxy = 'https://curly-memory-7w5g6j4v5q3x4rq-5500.app.github.dev/6_Symbols/3_ChecklistPlain/';
+        const targetUrl = 'data.json';
+
+        fetch(corsProxy + targetUrl)
             .then(response => response.json())
             .then(data => {
                 generateChecklist(data);
@@ -118,6 +121,7 @@
         }
 
         function generateChecklist(data) {
+            const container = document.getElementById('checklist-container');
             data.sections.forEach(section => {
                 const sectionDiv = document.createElement('div');
                 sectionDiv.classList.add('section');
