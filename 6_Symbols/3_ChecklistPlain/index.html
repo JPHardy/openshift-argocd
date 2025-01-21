@@ -6,7 +6,79 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IT Team Onboarding Checklist</title>
         <style>
-            /* Your existing CSS */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            #progress-label {
+                text-align: center;
+                margin-bottom: 10px;
+                font-size: 18px;
+                color: #555;
+            }
+
+            progress {
+                width: 100%;
+                height: 20px;
+                margin-bottom: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                font-size: 22px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            .checklist {
+                list-style: none;
+                padding: 0;
+            }
+
+            .checklist li {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .checklist li.completed {
+                background-color: #e0ffe0;
+            }
+
+            .checkbox-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .checkbox-container input[type="checkbox"] {
+                margin-right: 10px;
+            }
+
+            .task-description {
+                font-size: 16px;
+                color: #333;
+            }
         </style>
     </head>
     <body>
